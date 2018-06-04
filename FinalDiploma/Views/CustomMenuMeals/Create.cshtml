@@ -1,0 +1,57 @@
+﻿@model FinalDiploma.Models.CustomMenuMeals
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Додати до набору @Html.RouteLink((string)ViewBag.MenuName, new { controller = "CustomMenus", action = "Details", id = Model.CustomMenuId })</h2>
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DishId, "Cтрава", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("DishId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DishId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Додати" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<h3>Cклад набору</h3>
+<table id="waiterTable" class="table table-striped table-bordered" style="width:100%">
+    <tr>
+        <td><b>Пункт меню</b></td>
+        <td><b>Ціна</b></td>
+    </tr>
+    @foreach (var dish in ViewBag.dishes)
+    {
+        string path = String.Format("Details/{0}", dish.Dish.Id);
+        string pathRemove = String.Format("Delete/{0}", dish.Id);
+        <tr>
+            <td>@Html.ActionLink((string)dish.Dish.Name, path, "Dishes")</td>
+            <td>@dish.Dish.Price грн</td>
+            <td>@Html.ActionLink("Видалити із набору", pathRemove, "Meals")</td>
+        </tr>
+    }
+</table>
+<div>
+    @Html.RouteLink("Повернутись до набору", new { controller = "CustomMenus", action = "Details", id = Model.CustomMenuId })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

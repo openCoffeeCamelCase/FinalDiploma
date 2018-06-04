@@ -1,0 +1,50 @@
+﻿@model IEnumerable<FinalDiploma.Models.Dish>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Меню</h2>
+
+<p>
+    @Html.ActionLink("Додати нову страву", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Назва
+        </th>
+        <th>
+            Ціна
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Preview)
+        </th>*@
+        <th>
+            Категорія
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Preview)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Змінити", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Детальніше", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Видалити", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

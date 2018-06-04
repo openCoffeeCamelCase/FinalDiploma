@@ -1,0 +1,65 @@
+﻿@model IEnumerable<FinalDiploma.Models.CustomMenu>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Готові меню</h2>
+
+<p>
+    @Html.ActionLink("Додати новий набір", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Назва
+        </th>
+        <th>
+            Опис
+        </th>
+        <th>
+            Склад
+        </th>
+        <th>
+           Ціна
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        @{
+            ViewBag.allStringDishes = "";
+            ViewBag.totalCost = 0;
+            foreach (FinalDiploma.Models.CustomMenuMeals cmm in ViewBag.Alldishes)
+            {
+                if (cmm.CustomMenuId == item.Id)
+                {
+                    ViewBag.totalCost += cmm.Dish.Price;
+                    ViewBag.allStringDishes = String.Format("{0} {1}", ViewBag.allStringDishes, cmm.Dish.Name);
+                }
+            }
+
+        }
+        <td>
+            @ViewBag.allStringDishes
+        </td>
+        <td>
+            @ViewBag.totalCost грн
+        </td>
+        
+        <td>
+            @Html.ActionLink("Змінити", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Детальніше", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Видалити", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

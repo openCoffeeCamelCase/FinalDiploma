@@ -1,0 +1,18 @@
+﻿@model FinalDiploma.Models.Meals
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Видалити страву "@Model.Dish.Name" із замовлення №@Model.Ord.Id?</h2>
+<div>
+    <hr />
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("До списку замовлень", "Index", "Ords")
+        </div>
+    }
+</div>

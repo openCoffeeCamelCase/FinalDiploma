@@ -1,0 +1,95 @@
+﻿@model FinalDiploma.Models.Ord
+
+@{
+    ViewBag.Title = "Замовлення №" + Model.Id;
+}
+
+<h2>Замовлення №@Html.DisplayFor(model => model.Id)</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Офіціант
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegUser.Login)
+        </dd>
+
+        <dt>
+            Клієнт
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegUser1.Login)
+        </dd>
+
+        <dt>
+            Номер Столу
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tabl.Number)
+        </dd>
+
+        <dt>
+            Сума
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCost)
+        </dd>
+        <dt>
+            Час відкриття замовлення
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeOpen)
+        </dd>
+
+        <dt>
+            Час закриття замовлення
+        </dt>
+
+        <dd>
+            @{ if (Model.TimeEnd == null)
+                {
+                    <button class="btn btn-success" type="button" id="addressSearch"
+                            onclick="location.href='@Url.Action("CloseOrd", "Ords", new { id = Model.Id })'">
+                        Закрити замовлення
+                    </button>
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.TimeEnd)
+                }
+
+            }
+            
+        </dd>
+    </dl>
+</div>
+
+<h3>Cклад замовлення</h3>
+<table id="waiterTable" class="table table-striped table-bordered" style="width:100%">
+    <tr>
+        <td><b>Пункт меню</b></td>
+        <td><b>Ціна</b></td>
+    </tr>
+    @foreach (var dish in ViewBag.dishes)
+    {
+        string path = String.Format("Details/{0}", dish.Dish.Id);
+        string pathRemove = String.Format("Delete/{0}", dish.Id);
+        <tr>
+            <td>@Html.ActionLink((string)dish.Dish.Name, path, "Dishes")</td>
+            <td>@dish.Dish.Price грн</td>
+            <td>@Html.ActionLink("Видалити із замовлення", pathRemove, "Meals")</td>
+        </tr>
+    }
+</table>
+@Html.RouteLink("Додати до замовлення", new { controller = "Meals", action = "Create", ordId = Model.Id })
+<p>
+    @Html.ActionLink("Змінити", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Усі замовлення", "Index")
+</p>
