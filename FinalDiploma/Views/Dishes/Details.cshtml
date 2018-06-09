@@ -65,7 +65,8 @@
     }
 </table>
     @*@Html.ActionLink("Додати продукт до страви", "Create", "DishEntries", new { id = b.Id })*@
+@Html.RouteLink("Додати продукт до страви", new { controller = "DishEntries", action = "Create", dishId = Model.Id })
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Змінити", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Усі замовлення", "Index")
 </p>

@@ -28,13 +28,14 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Наше меню", "Index", "Dishes")</li>
-                            <li>@Html.ActionLink("Користувацькі набори", "Index", "CustomMenus")</li>
+                            <li>@Html.ActionLink("Меню", "Index", "Dishes")</li>
+                            <li>@Html.ActionLink("Комбо-набори", "Index", "CustomMenus")</li>
                         </ul>
                     </li>
+                    <li>@Html.ActionLink("Стан столиків", "StateOfTables", "Tabls")</li>
                     <li class="dropdown">
                         <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            System
+                            Керування
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
@@ -59,7 +60,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Kononenko Software</p>
         </footer>
     </div>
 

@@ -37,12 +37,22 @@ namespace FinalDiploma.Controllers
         }
 
         // GET: DishEntries/Create
-        public ActionResult Create()
+        public ActionResult Create(int? dishId)
         {
-            ViewBag.DishId = new SelectList(db.Dish, "Id", "Name");
+            if (dishId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //ViewBag.DishId = new SelectList(db.Dish, "Id", "Name");
+            IEnumerable<DishEntry> DishEntrys = db.DishEntry.Where(u => u.DishId == dishId).AsEnumerable();
+            ViewBag.products = DishEntrys;
             ViewBag.ProductId = new SelectList(db.Product, "Id", "Name");
-            return View();
+            DishEntry currentDishEntry = new DishEntry();
+            currentDishEntry.Dish = DishEntrys.FirstOrDefault().Dish;
+            currentDishEntry.DishId = dishId ?? currentDishEntry.DishId;
+            return View(currentDishEntry);
         }
+
 
         // POST: DishEntries/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -55,11 +65,12 @@ namespace FinalDiploma.Controllers
             {
                 db.DishEntry.Add(dishEntry);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
             }
-
-            ViewBag.DishId = new SelectList(db.Dish, "Id", "Name", dishEntry.DishId);
+            IEnumerable<DishEntry> DishEntrys = db.DishEntry.Where(u => u.DishId == dishEntry.DishId).AsEnumerable();
+            ViewBag.products = DishEntrys;
             ViewBag.ProductId = new SelectList(db.Product, "Id", "Name", dishEntry.ProductId);
+            dishEntry.Dish = DishEntrys.FirstOrDefault().Dish;
             return View(dishEntry);
         }
 

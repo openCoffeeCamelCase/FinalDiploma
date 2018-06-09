@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FinalDiploma.Models;
+using System.Collections;
 
 namespace FinalDiploma.Controllers
 {
@@ -19,6 +20,44 @@ namespace FinalDiploma.Controllers
         {
             return View(db.Tabl.ToList());
         }
+
+        [HttpGet]
+        public ActionResult StateOfTables(String status)
+        {
+            String StatusAll = "Всі";
+            String StatusBusy = "Занятий";
+            String StatusFree = "Вільний";
+            //String status = StatusAll;
+            var StatusDropDownList = new List<String>();
+            StatusDropDownList.Add(StatusAll);
+            StatusDropDownList.Add(StatusBusy);
+            StatusDropDownList.Add(StatusFree);
+            List<TablStatus> StatusTableList = new List<TablStatus>();
+            var tabls = db.Tabl.ToList();
+            foreach (var curTabl in tabls)
+            {
+                TablStatus NewCurrentStatusTable = new TablStatus();
+                NewCurrentStatusTable.Tabl = curTabl;
+                NewCurrentStatusTable.Status = StatusFree;
+                StatusTableList.Add(NewCurrentStatusTable);
+            }
+            var ActiveOrds = db.Ord.Where(u => u.TimeEnd == null).ToList();
+            foreach (var curOrd in ActiveOrds)
+            {
+                StatusTableList.Where(u => u.Tabl == curOrd.Tabl).FirstOrDefault().Status = StatusBusy;
+            }
+            ViewBag.CountOfAllTables = tabls.Count;
+            ViewBag.CountOfFreeTables = StatusTableList.Where(u => u.Status == StatusFree).Count();
+            ViewBag.CountOfBusyTables = ViewBag.CountOfAllTables - ViewBag.CountOfFreeTables;
+            SelectList StatusSelectList = new SelectList(StatusDropDownList);
+            ViewBag.StatusList = StatusSelectList;
+            if (status != null && status != StatusAll)
+            {
+                return View(StatusTableList.Where(u => u.Status == status).ToList());
+            }
+            return View(StatusTableList);
+        }
+
 
         // GET: Tabls/Details/5
         public ActionResult Details(int? id)

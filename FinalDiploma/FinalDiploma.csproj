@@ -265,6 +265,7 @@
     <Compile Include="Models\Tabl.cs">
       <DependentUpon>Restaurant.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TablStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -400,6 +401,7 @@
     <Content Include="Views\Ords\Details.cshtml" />
     <Content Include="Views\Ords\Edit.cshtml" />
     <Content Include="Views\Ords\Index.cshtml" />
+    <Content Include="Views\Tabls\StateOfTables.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
