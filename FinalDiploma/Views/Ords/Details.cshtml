@@ -88,7 +88,10 @@
         </tr>
     }
 </table>
+@if (Model.TimeEnd == null)
+{
 @Html.RouteLink("Додати до замовлення", new { controller = "Meals", action = "Create", ordId = Model.Id })
+}
 <p>
     @Html.ActionLink("Змінити", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Усі замовлення", "Index")

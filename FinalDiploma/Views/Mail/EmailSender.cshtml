@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "EmailSender";
+}
+<h2>Відправити повідомлення</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label for="NameFrom">Від імені</label>
+        <input type="text" class="form-control" name="NameFrom" placeholder="Адміністрація">
+    </div>
+    <div class="form-group">
+        <label for="EmailTo">Кому</label>
+        <input type="text" class="form-control" name="EmailTo" placeholder="name@example.com">
+    </div>
+    foreach (var item in ViewBag.RoleList)
+            {
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                               name="SelectedRole"
+                               value="@item.Name" /> @item.Name
+                        </label>
+                    </div>
+            }
+    <div class="form-group">
+        <label for="Header">Тема</label>
+        <input type="text" class="form-control" name="Header" placeholder="Тема">
+    </div>
+    <div class="form-group">
+        <textarea class="form-control" name="Message" rows="4"></textarea>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Надіслати" class="btn btn-default" />
+        </div>
+    </div>
+}

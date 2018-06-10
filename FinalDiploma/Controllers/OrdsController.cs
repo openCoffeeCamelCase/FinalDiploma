@@ -30,15 +30,12 @@ namespace FinalDiploma.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Ord ord = db.Ord.Find(id);
-
             IEnumerable<Meals> MenuMeals = db.Meals.Where(u => u.OrdId == id).AsEnumerable();
             ViewBag.dishes = MenuMeals;
-
             if (ord == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.TimeEnd = ord.TimeEnd;
             return View(ord);
         }
 

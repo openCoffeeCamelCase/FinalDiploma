@@ -204,6 +204,7 @@
     <Compile Include="Controllers\DishEntriesController.cs" />
     <Compile Include="Controllers\DishesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MealsController.cs" />
     <Compile Include="Controllers\OrdsController.cs" />
@@ -268,6 +269,7 @@
     <Compile Include="Models\TablStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\Mail.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -300,6 +302,7 @@
     <Content Include="Models\Restaurant.edmx.diagram">
       <DependentUpon>Restaurant.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\ClassDiagram.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -402,6 +405,7 @@
     <Content Include="Views\Ords\Edit.cshtml" />
     <Content Include="Views\Ords\Index.cshtml" />
     <Content Include="Views\Tabls\StateOfTables.cshtml" />
+    <Content Include="Views\Mail\EmailSender.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

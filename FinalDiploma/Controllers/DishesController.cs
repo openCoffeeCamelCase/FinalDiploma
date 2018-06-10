@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FinalDiploma.Models;
+using FinalDiploma.Utils;
 
 namespace FinalDiploma.Controllers
 {
@@ -61,6 +62,12 @@ namespace FinalDiploma.Controllers
             {
                 db.Dish.Add(dish);
                 db.SaveChanges();
+                List<string> ListOfMail = new List<string>();
+                string NameFrom = "Адміністрація ресторану";
+                string Message = String.Format("Вітємо! Раді повідомити що у нашому меню з'явився новий пункт - {0} всього за {1}грн. ", dish.Name, dish.Price);
+                string Header = "Новий пункт меню";
+                ListOfMail.AddRange(db.RegUser.Where(u => u.RegUserRole.Name == "Client").Select(c => c.Email).ToList());
+                Mail.MailSender(NameFrom, Message, Header, ListOfMail);
                 return RedirectToAction("Index");
             }
 

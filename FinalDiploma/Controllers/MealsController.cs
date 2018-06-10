@@ -43,12 +43,19 @@ namespace FinalDiploma.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.DishId = new SelectList(db.Dish, "Id", "Name");
             IEnumerable<Meals> MenuMeals = db.Meals.Where(u => u.OrdId == ordId).AsEnumerable();
+            Meals CurrentMeal = new Meals();
+            CurrentMeal.OrdId = ordId ?? CurrentMeal.OrdId;      
+            Ord CurrentOrder = db.Ord.Find(ordId);
+            ViewBag.DishId = new SelectList(db.Dish, "Id", "Name");
             ViewBag.dishes = MenuMeals;
-            Meals currentMeal = new Meals();
-            currentMeal.OrdId = ordId ?? currentMeal.OrdId;
-            return View(currentMeal);
+            ViewBag.IsOrdClosed = false;
+            if (CurrentOrder.TimeEnd != null)
+            {
+                ViewBag.IsOrdClosed = true;
+            }
+
+            return View(CurrentMeal);
         }
 
         // POST: Meals/Create
@@ -60,13 +67,20 @@ namespace FinalDiploma.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Meals.Add(meals);
-                Ord curOrd = db.Ord.Find(meals.OrdId);
-                if (curOrd != null) { 
-                curOrd.TotalCost += db.Dish.Find(meals.DishId).Price;
-            }
-                db.Entry(curOrd).State = EntityState.Modified;
-                db.SaveChanges();
+               
+                Ord CurrentOrder = db.Ord.Find(meals.OrdId);
+                if (CurrentOrder != null) { 
+               
+                ViewBag.IsOrdClosed = false;
+                if ( CurrentOrder.TimeEnd != null)
+                    {
+                        db.Meals.Add(meals);
+                        CurrentOrder.TotalCost += db.Dish.Find(meals.DishId).Price;
+                        db.Entry(CurrentOrder).State = EntityState.Modified;
+                        db.SaveChanges();
+                        ViewBag.IsOrdClosed = true;
+                    }
+            }         
                 //return RedirectToAction("Create", "Meals", new { ordId = meals.OrdId });
             }
             IEnumerable<Meals> MenuMeals = db.Meals.Where(u => u.OrdId == meals.OrdId).AsEnumerable();
@@ -104,10 +118,6 @@ namespace FinalDiploma.Controllers
             {
                 db.Entry(meals).State = EntityState.Modified;
                 Ord curOrd = db.Ord.Find(meals.OrdId);
-                if (curOrd != null)
-                {
-                    curOrd.TotalCost += db.Dish.Find(meals.DishId).Price;
-                }
                 db.Entry(curOrd).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Details", "Ords", new { id = meals.OrdId });
@@ -138,15 +148,22 @@ namespace FinalDiploma.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+
             Meals meals = db.Meals.Find(id);
             Ord curOrd = db.Ord.Find(meals.OrdId);
-            if (curOrd != null)
+
+            if (curOrd != null && curOrd.TimeEnd != null)
             {
+                ViewBag.IsOrdClosed = false;
                 curOrd.TotalCost -= db.Dish.Find(meals.DishId).Price;
+                db.Meals.Remove(meals);
+                db.Entry(curOrd).State = EntityState.Modified;
+                db.SaveChanges();
             }
-            db.Meals.Remove(meals);
-            db.Entry(curOrd).State = EntityState.Modified;
-            db.SaveChanges();
+            else
+            {
+                ViewBag.IsOrdClosed = true;
+            }
             return RedirectToAction("Details", "Ords", new { id = meals.OrdId });
         }
 

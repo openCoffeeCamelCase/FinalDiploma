@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FinalDiploma.Models.RestaurantEntities">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACEAgABAAAgAAAAAAAAAAAEQAAAAAgAAACACAQCAA=</HashCode>
+      <FileName>Models\Restaurant.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalDiploma.Models.Category">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Models\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalDiploma.Models.CustomMenu">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAABAAggAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CustomMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalDiploma.Models.CustomMenuMeals">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAEAAAgAAAAAAACAQAAA=</HashCode>
+      <FileName>Models\CustomMenuMeals.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalDiploma.Models.Dish">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACEAgABQAAAgAAAAAAAAQAAAAAAAAAAAQAAAAACAA=</HashCode>
+      <FileName>Models\Dish.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalDiploma.Models.DishEntry">
+    <Position X="1.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Models\DishEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalDiploma.Models.Meals">
+    <Position X="5.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAAAAAAAAAAAAAAAEAEAAAgAAAAACAAAAA=</HashCode>
+      <FileName>Models\Meals.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalDiploma.Models.Ord">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIQgAAAAAwAABgAAAAAQAAAAAAAAAAAACAEAAAAA=</HashCode>
+      <FileName>Models\Ord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalDiploma.Models.Product">
+    <Position X="7" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACEAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalDiploma.Models.RegUser">
+    <Position X="3.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAAAAAAQAAAAAiABAQIABQAAA=</HashCode>
+      <FileName>Models\RegUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalDiploma.Models.RegUserRole">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\RegUserRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalDiploma.Models.Tabl">
+    <Position X="8.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAEAAAAAAAAAAAAAgAAAACAAAAAA=</HashCode>
+      <FileName>Models\Tabl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalDiploma.Models.TablStatus">
+    <Position X="11.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Models\TablStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalDiploma.Utils.Mail">
+    <Position X="14" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\Mail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
