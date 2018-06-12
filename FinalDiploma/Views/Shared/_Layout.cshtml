@@ -7,6 +7,24 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <style>
+        html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -33,7 +51,7 @@
                         </ul>
                     </li>
                     <li>@Html.ActionLink("Стан столиків", "StateOfTables", "Tabls")</li>
-                    <li class="dropdown">
+                    @*<li class="dropdown">
                         <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Керування
                             <span class="caret"></span>
@@ -47,7 +65,7 @@
                             <li>@Html.ActionLink("Ролі", "Index", "RegUserRoles")</li>
                             <li>@Html.ActionLink("Розсилка пошти", "EmailSender", "Email")</li>
                         </ul>
-                    </li>
+                    </li>*@
                     <li>@Html.ActionLink("Про нас", "About", "Home")</li>
                     <li>@Html.ActionLink("Контакты", "Contact", "Home")</li>
                 </ul>
@@ -56,6 +74,7 @@
         </div>
     </div>
     <div class="container body-content">
+
         @RenderBody()
         <hr />
         <footer>

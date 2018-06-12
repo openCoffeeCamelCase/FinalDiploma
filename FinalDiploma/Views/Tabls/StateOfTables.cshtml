@@ -3,57 +3,59 @@
     ViewBag.Title = "Стан столиків";
 }
 
-<h2>Стан столиків</h2>
-<p>
-    Загальна кількість столів - @ViewBag.CountOfAllTables .  З них вільних - @ViewBag.CountOfFreeTables; занятих - @ViewBag.CountOfBusyTables .</p>
- <p>
-    Статус:
-    @Html.DropDownList("Status", ViewBag.StatusList as SelectList,
+
+    <h2>Стан столиків</h2>
+    <p>
+        Загальна кількість столів - @ViewBag.CountOfAllTables .  З них вільних - @ViewBag.CountOfFreeTables; занятих - @ViewBag.CountOfBusyTables .
+    </p>
+    <p>
+        Статус:
+        @Html.DropDownList("Status", ViewBag.StatusList as SelectList,
     new
     {
 
         style = "width: 170px"
 
     })
-</p> 
-<script src="~/Scripts/jquery-1.10.2.js"></script>
-<script>
-   $(document).ready(function() {
-       $("#Status").change(function () {
-        
-        var strSelected = "";
-        $("#Status option:selected").each(function () {
-            strSelected += $(this)[0].value;
+    </p>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#Status").change(function () {
+
+                var strSelected = "";
+                $("#Status option:selected").each(function () {
+                    strSelected += $(this)[0].value;
+                });
+                window.location.href = "@Url.Action("StateOfTables","Tabls")?status=" + strSelected;
+            });
         });
-        window.location.href = "@Url.Action("StateOfTables","Tabls")?status=" + strSelected;
-    });
-});
-</script>
+    </script>
 
-<table class="table">
-    <tr>
-        <th>
-           Номер столику
-        </th>
-        <th>
-            Кількість місць
-        </th>
-        <th>Статус</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tabl.Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tabl.PlaceNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
+            <th>
+                Номер столику
+            </th>
+            <th>
+                Кількість місць
+            </th>
+            <th>Статус</th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tabl.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tabl.PlaceNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            </tr>
+        }
+
+    </table>
